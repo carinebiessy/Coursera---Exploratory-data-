@@ -1,0 +1,35 @@
+DB <- read.table("household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+DBfinal <- data[DB$Date %in% c("1/2/2007","2/2/2007") ,]
+electpower <- as.numeric(DBfinal$Global_active_power)
+datetime <- strptime(paste(DBfinal$Date,DBfinal$Time,sep=" "),"%d/%m/%Y %H:%M:%S") 
+head(DBfinal)
+head(electpower)
+head(datetime)
+
+mean(DBfinal$Sub_metering_1)
+subM1 <- as.numeric(DBfinal$Sub_metering_1)
+head(subM1)
+mean(subM1)
+subM2 <- as.numeric(DBfinal$Sub_metering_2)
+head(subM2)
+subM3 <- as.numeric(DBfinal$Sub_metering_3)
+head(subM3)
+
+plot(datetime, subM1, type="l", ylab="Energy Submetering")
+
+plot(datetime, subM1, type="l", ylab="Energy Submetering", xlab="")
+
+plot(datetime, subM1, type="l", ylab="Energy Submetering", xlab="")
+lines(datetime, subM2, type="l", col="red")
+
+plot(datetime, subM1, type="l", ylab="Energy Submetering", xlab="")
+lines(datetime, subM2, type="l", col="red")
+lines(datetime, subM3, type="l", col="blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, lwd=2)
+
+png("Plot3.png", width=480, height=480)
+plot(datetime, subM1, type="l", ylab="Energy Submetering", xlab="")
+lines(datetime, subM2, type="l", col="red")
+lines(datetime, subM3, type="l", col="blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, lwd=1, col=c("black", "red", "blue"))
+dev.off()
