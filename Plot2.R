@@ -6,7 +6,7 @@ head(DBfinal)
 head(electpower)
 head(datetime)
 
-plot(datetime,electpower,type="l",ylab="Global Active Power (kilowatts)")
+plot(datetime,electpower,type="l",xlab="",ylab="Global Active Power (kilowatts)")
 
 png("Plot2.png", width=480, height=480)
 datetime <- strptime(paste(DBfinal$Date,DBfinal$Time,sep=" "),"%d/%m/%Y %H:%M:%S") 
